@@ -9,6 +9,9 @@ let poems: string[] = []
 router.get("/hello", (req: Request, res: Response) => {
     res.json({msg: "Hello World!"})
 })
+router.get("/", (req: Request, res: Response) => {
+  res.json({ msg: "Server is running!" });
+});
 
 router.get("/:id", (req: Request, res: Response) => {
     let id: number = parseInt(req.params.id ?? "0")
