@@ -4,7 +4,12 @@ import express from "express"
 //import fs from "fs"
 
 const router: Router = Router()
-let poems: string[] = []
+type TUser = {
+    name:string,
+    email:string
+};
+
+let usersList: TUser[] = [];
 
 router.use(express.json());
 
@@ -30,13 +35,27 @@ router.post("/sum", (req: Request, res: Response) => {
     const numbersArr: number[] = req.body.numbers
     console.log(numbersArr);
     let result: number = 0;
-    //for (let i = 0; i < numbersArr.length; i++) {
-      //  result += numbersArr[i]
-    //}
     for (const num of numbersArr) {
         result += num; 
     }
     res.json({sum: result})
 })
+
+router.post("/users", (req: Request, res: Response) => {
+    let name: string = req.body.name;
+    let email: string = req.body.email;
+    let newUser: TUser = {
+        name: name,
+        email: email
+    }
+    usersList.push(newUser);
+    res.json({message: "User successfully added"})
+})
+
+router.get("/users", (req: Request, res: Response) => {
+    res.status(201).json({users: usersList})
+})
+
+
 
 export default router

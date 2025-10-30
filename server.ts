@@ -1,7 +1,7 @@
 import express, { type Express } from "express";
 import path from "path";
 import { fileURLToPath } from "url";
-import router from "./src/testIndex.js";
+import router from "./src/index.js";
 import morgan from "morgan"
 
 const __filename = fileURLToPath(import.meta.url);
